@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreReservaRequest;
-use App\Http\Requests\UpdateReservaRequest;
+use Illuminate\Http\Request;
 use App\Models\Reserva;
+use App\Models\Vuelo;
+
 
 class ReservaController extends Controller
 {
@@ -19,15 +20,15 @@ class ReservaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Vuelo $vuelo)
     {
-        return view("reservas.create");
+        return view("reservas.create", ["vuelo"=>$vuelo]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReservaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +52,7 @@ class ReservaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReservaRequest $request, Reserva $reserva)
+    public function update(Request $request, Reserva $reserva)
     {
         //
     }

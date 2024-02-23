@@ -35,4 +35,5 @@ Route::resource("reservas", ReservaController::class);
 
 Route::resource("vuelos", VueloController::class);
 
+
 require __DIR__.'/auth.php';

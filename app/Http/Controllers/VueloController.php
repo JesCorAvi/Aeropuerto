@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVueloRequest;
 use App\Http\Requests\UpdateVueloRequest;
 use App\Models\Vuelo;
+use App\Models\Reserva;
+
+
 
 class VueloController extends Controller
 {
@@ -19,7 +22,7 @@ class VueloController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreVueloRequest $request)
     {
         return view("vuelos.create");
 
