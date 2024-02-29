@@ -16,7 +16,7 @@ class VueloController extends Controller
      */
     public function index()
     {
-        return view("vuelos.index", ["vuelos"=>Vuelo::all()]);
+        return view("vuelos.index", ["vuelos"=>Vuelo::all(), "reservas"=>Reserva::all()]);
     }
 
     /**

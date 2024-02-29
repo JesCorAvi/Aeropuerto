@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("vuelo_id")->constrained("vuelos");
             $table->foreignId("user_id")->constrained("users");
+            $table->unique(["vuelo_id", "user_id"]);
+            $table->integer("plaza");
             $table->timestamps();
         });
     }

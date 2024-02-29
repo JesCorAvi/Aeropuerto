@@ -4,7 +4,7 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Codigo de vuelo
+                        id
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Nombre de cliente
@@ -29,17 +29,17 @@
             <tbody>
                 @foreach($reservas as $reserva)
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-100 whitespace-nowrap">
-                        {{$reserva->vuelo_id}}
-                    </th>
+                    <td class="px-6 py-4">
+                        {{$reserva->id}}
+                    </td>
                     <td class="px-6 py-4">
                         {{$reserva->user->name}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$reserva->vuelo->salida->nombre}}
+                        {{$reserva->vuelo->aeropuertoSalida->nombre}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$reserva->vuelo->llegada->nombre}}
+                        {{$reserva->vuelo->aeropuertoLlegada->nombre}}
                     </td>
                     <td class="px-6 py-4">
                         {{$reserva->vuelo->salida}}
@@ -48,8 +48,14 @@
                         {{$reserva->vuelo->llegada}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
+                        <a href="{{route("reservas.edit", $reserva)}}" class="font-medium text-blue-600 hover:underline">Editar</a>
+                        <form action="{{route("reservas.destroy", $reserva)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit">Borrar</button>
+                        </form>
                     </td>
+
                 </tr>
                 @endforeach
             </tbody>

@@ -31,9 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("reservas", ReservaController::class);
+Route::resource("reservas", ReservaController::class)->middleware("auth");
 
-Route::resource("vuelos", VueloController::class);
+Route::resource("vuelos", VueloController::class)->middleware("auth");
 
+Route::post('/reserva/create', [ReservaController::class, 'create'])->name('reservas.create')->middleware("auth");
 
 require __DIR__.'/auth.php';

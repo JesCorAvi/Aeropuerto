@@ -45,7 +45,19 @@
                         {{$vuelo->asientosDisponibles()}}
                     </td>
                     <td class="px-6 py-4">
-                        <a href={{route('reservas.create', ['vuelo' => $vuelo])}} class="font-medium text-blue-600 hover:underline">Reservar</a>
+
+                    @if ($reservas->where('vuelo_id', $vuelo->id)->where('user_id', auth()->user()->id)->first())
+                        <button disabled>Ya lo has reservado</button>
+                    @elseif ($vuelo->asientosDisponibles() <= 0)
+                        <button disabled>Plazas agotadas</button>
+                    @else
+                        <form action="{{route('reservas.create')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="vuelo_id" value="{{$vuelo->id}}">
+                            <button>Reservar</button>
+                        </form>
+                    @endif
+
                     </td>
                 </tr>
                 @endforeach
